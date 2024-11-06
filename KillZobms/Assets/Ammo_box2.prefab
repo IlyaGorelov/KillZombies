@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8347360299777551136}
   - component: {fileID: 7137173485440106497}
   - component: {fileID: 3952780544350702694}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5842876626851271988}
   - component: {fileID: 1289109399769978065}
   - component: {fileID: 2888276311928915587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ammo_box2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12ae4413e21c7e4eae74ad9f9205b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   count: 30
 --- !u!65 &2888276311928915587
 BoxCollider:
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 2874584608559675981}
   - component: {fileID: 124100316123184120}
   - component: {fileID: 8715899808097339059}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

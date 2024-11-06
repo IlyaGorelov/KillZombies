@@ -13,6 +13,7 @@ public class GetAmmo : MonoBehaviour
             {
             if(cg.gunId == id)
             {
+                cg.PlaySound();
                 Weapon weapon = collision.gameObject.GetComponentInChildren<Weapon>();
                 weapon.allAmmo += count;
                 Destroy(gameObject);
@@ -20,6 +21,7 @@ public class GetAmmo : MonoBehaviour
             }
             else
             {
+                cg.PlaySound();
                 Shotgun weapon = collision.gameObject.GetComponentInChildren<Shotgun>();
                 weapon.allAmmo += count;
                 Destroy(gameObject);

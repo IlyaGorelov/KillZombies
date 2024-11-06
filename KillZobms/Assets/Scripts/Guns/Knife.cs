@@ -35,13 +35,13 @@ public class Knife : MonoBehaviour
     private void Shooting()
     {
         PlaySound();
-        Vector3 dir = CalculateDirectionAndSpreading().normalized;
+        
         animator.SetTrigger("Stop");
         animator.SetTrigger("Shoot");
-        Ray ray = new Ray(spawn.position, dir);
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-
+            
             StartCoroutine(DoAfter(0.5f, hit));
 
         }
@@ -55,21 +55,7 @@ public class Knife : MonoBehaviour
         shoot.Play();
     }
 
-    private Vector3 CalculateDirectionAndSpreading()
-    {
-        Ray rayFromCam = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-        Vector3 targetPoint;
-
-        if (Physics.Raycast(rayFromCam, out RaycastHit hit))
-            targetPoint = hit.point;
-        else
-            targetPoint = rayFromCam.GetPoint(100);
-
-        Vector3 dir = targetPoint - spawn.position;
-
-        return dir;
-    }
+    
 
     private IEnumerator DestroyAfter(int sec, GameObject g)
     {
@@ -83,6 +69,7 @@ public class Knife : MonoBehaviour
             yield return new WaitForSeconds(sec);
         if (hit.collider.gameObject.layer == 7 && Vector3.Distance(hit.point, spawn.position) <= minDistance)
         {
+            
             var g = Instantiate(bodyEffect, hit.point, Quaternion.identity);
             if (hit.collider.gameObject.TryGetComponent(out TakeDamage td))
                 td.GetDamage(damage);

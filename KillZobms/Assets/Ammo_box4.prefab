@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2712130257000107559}
   - component: {fileID: 4412717824277686800}
   - component: {fileID: 8387467145986869747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ammo_box4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 2289890733817332511}
   - component: {fileID: 9094625145794759252}
   - component: {fileID: 6455736478465539785}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0334, y: 0.413}
-  m_SizeDelta: {x: 974.2266, y: 385.4962}
+  m_AnchoredPosition: {x: -0.0064, y: 0.413}
+  m_SizeDelta: {x: 920.2267, y: 385.4962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9094625145794759252
 CanvasRenderer:
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 8423993546748674942}
   - component: {fileID: 667658054366966679}
   - component: {fileID: 4463049804018973782}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

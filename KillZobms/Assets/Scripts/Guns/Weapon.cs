@@ -11,14 +11,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] AudioSource recharge;
     [SerializeField] GameObject bullet;
     [SerializeField] int damage;
-    [SerializeField] Transform spawn;
     [SerializeField] Transform sleeveSpawn;
     [SerializeField] ParticleSystem shootParticle;
     [SerializeField] float delay;
     [SerializeField] GameObject groundEffect;
     [SerializeField] GameObject bodyEffect;
+    [SerializeField] GameObject cam;
     private float timeBeforeShot;
-    public Camera cam;
     [SerializeField] float spread;
 
     private void OnEnable()
@@ -28,6 +27,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        
 
         if (Input.GetKey(KeyCode.Mouse0) && timeBeforeShot <= 0 && magazine > 0)
         {
@@ -52,15 +52,23 @@ public class Weapon : MonoBehaviour
         if (allAmmo >= fullMagazine)
         {
             allAmmo -= fullMagazine;
-            magazine += fullMagazine;
+            magazine = fullMagazine;
             animator.SetTrigger("Recharge");
             recharge.Play();
         }
         else
         {
+            if (magazine + allAmmo <= fullMagazine)
+            {
+                magazine += allAmmo;
+                allAmmo = 0;
+            }
+            else
+            {
+                magazine = fullMagazine;
+                allAmmo -= fullMagazine - magazine;
+            }
 
-            magazine += allAmmo;
-            allAmmo = 0;
             animator.SetTrigger("Recharge");
             recharge.Play();
         }
@@ -70,12 +78,12 @@ public class Weapon : MonoBehaviour
     {
         shootParticle.Play();
         PlaySound();
-        Vector3 dir = CalculateDirectionAndSpreading().normalized;
+        Vector3 dir = CalculateDirectionAndSpreading();
         animator.SetTrigger("Stop");
         animator.SetTrigger("Shoot");
-        Ray ray = new Ray(spawn.position, dir);
+        Ray ray = new(cam.transform.position, dir);
         var bulletBeing = Instantiate(bullet, sleeveSpawn.position, Quaternion.identity);
-        bulletBeing.GetComponent<Rigidbody>().AddForce(sleeveSpawn.right* 1f);
+        bulletBeing.GetComponent<Rigidbody>().AddForce(sleeveSpawn.right * 1f);
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
@@ -88,8 +96,8 @@ public class Weapon : MonoBehaviour
             if (hit.collider.gameObject.layer == 7)
             {
                 var g = Instantiate(bodyEffect, hit.point, Quaternion.identity);
-                if(hit.collider.gameObject.TryGetComponent(out TakeDamage td))
-                td.GetDamage(damage);
+                if (hit.collider.gameObject.TryGetComponent(out TakeDamage td))
+                    td.GetDamage(damage);
                 StartCoroutine(DestroyAfter(5, g));
             }
             if (hit.collider.gameObject.layer == 8)
@@ -110,8 +118,7 @@ public class Weapon : MonoBehaviour
 
     private Vector3 CalculateDirectionAndSpreading()
     {
-        Ray rayFromCam = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
+        Ray rayFromCam = new(cam.transform.position,cam.transform.forward);
         Vector3 targetPoint;
 
         if (Physics.Raycast(rayFromCam, out RaycastHit hit))
@@ -119,7 +126,7 @@ public class Weapon : MonoBehaviour
         else
             targetPoint = rayFromCam.GetPoint(100);
 
-        Vector3 dir = targetPoint - spawn.position;
+        Vector3 dir = targetPoint-cam.transform.position;
 
         float xSpread = Random.Range(-spread, spread);
         float ySpread = Random.Range(-spread, spread);

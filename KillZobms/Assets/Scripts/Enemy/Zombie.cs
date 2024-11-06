@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,8 +12,11 @@ public class Zombie : MonoBehaviour
     [SerializeField] float maxDistance;
     [SerializeField] LayerMask layer;
     [SerializeField] float delay = 1;
+    [SerializeField] AudioSource sound;
+    [SerializeField] AudioSource handSound;
+    [SerializeField] AudioSource dieSound;
     private float timeBtwAttack;
-    private bool canDie = true;
+    private bool isDead = false;
     private NavMeshAgent agent;
     private GameObject playerController;
     private bool canDo = true;
@@ -26,8 +30,13 @@ public class Zombie : MonoBehaviour
 
     private void Update()
     {
+
+        CrySound();
+        if(!isDead)
         agent.SetDestination(playerController.transform.position);
-        if (health <= 0 && canDie)
+
+        
+        if (health <= 0 && !isDead)
         {
             Die();
         }
@@ -38,9 +47,19 @@ public class Zombie : MonoBehaviour
             agent.speed *= 2;
             agent.angularSpeed *= 2;
         }
-        if (timeBtwAttack <= 0)
+        if (timeBtwAttack <= 0 && !isDead)
             Attack();
         else timeBtwAttack -= Time.deltaTime;
+    }
+
+    void CrySound()
+    {
+        int rand = Random.Range(0, 100000);
+        if (rand == 100)
+        {
+            if (!isDead)
+                sound.Play();
+        }
     }
 
     private void Attack()
@@ -50,21 +69,19 @@ public class Zombie : MonoBehaviour
 
         if (Physics.Raycast(transform.position,dir,out RaycastHit hit,maxDistance, layer))
         {
-            animator.SetInteger("Attack",1);
+            animator.SetTrigger("Attack");
+            agent.SetDestination(transform.position);
            var ch = hit.collider.gameObject.GetComponent<CharacterHealth>();
             StartCoroutine(DamageAfter(ch));
-        }
-        else
-        {
-            animator.SetInteger("Attack", 0);
         }
     }
 
     private void Die()
     {
-        agent.speed=0;
+        dieSound.Play();
+        agent.SetDestination(transform.position);
         agent.angularSpeed = 0;
-        canDie = false;
+        isDead = true;
         animator.SetTrigger("Die");
         BoxCollider[] colliders = GetComponentsInChildren<BoxCollider>();
         foreach (BoxCollider collider in colliders)
@@ -72,12 +89,31 @@ public class Zombie : MonoBehaviour
             if (collider.enabled) collider.enabled = false;
             else collider.enabled = true;
         }
+        WaveState.zombiesCount--;
+        if (WaveState.zombiesCount == 0) WaveState.isRest = true;
+        StartCoroutine(DestroyAfter());
     }
 
     private IEnumerator DamageAfter(CharacterHealth ch)
     {
-        yield return new WaitForSeconds(0.17f);
-        ch.GetDamage(damage);
+        handSound.Play();
+        yield return new WaitForSeconds(0.2f);
+        if(Vector3.Distance(transform.position,playerController.transform.position)<=maxDistance)
+        ch.GetDamage(damage/2);
+        handSound.Play();
+        yield return new WaitForSeconds(0.4f);
+        if (Vector3.Distance(transform.position, playerController.transform.position) <= maxDistance)
+            ch.GetDamage(damage / 2);
+        yield return new WaitForSeconds(0.4f);
+        agent.SetDestination(playerController.transform.position);
 
     }
+
+    private IEnumerator DestroyAfter()
+    {
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
+
+    }
+
 }

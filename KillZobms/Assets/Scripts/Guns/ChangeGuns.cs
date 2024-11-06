@@ -6,6 +6,7 @@ public class ChangeGuns : MonoBehaviour
     [SerializeField] GameObject[] guns;
     public int gunId=0;
     [SerializeField] GameObject ChangeUI;
+    [SerializeField] AudioSource ammoSound;
 
     // Update is called once per frame
     void Update()
@@ -43,5 +44,10 @@ public class ChangeGuns : MonoBehaviour
         ChangeUI.SetActive(true);
         yield return new WaitForSeconds(3);
         ChangeUI.SetActive(false);
+    }
+
+    public void PlaySound()
+    {
+        ammoSound.Play();
     }
 }

@@ -12,7 +12,6 @@ public class Shotgun : MonoBehaviour
     [SerializeField] AudioSource recharge;
     [SerializeField] GameObject bullet;
     [SerializeField] int damage;
-    [SerializeField] Transform spawn;
     [SerializeField] Transform sleeveSpawn;
     [SerializeField] ParticleSystem shootParticle;
     [SerializeField] float delay;
@@ -59,8 +58,17 @@ public class Shotgun : MonoBehaviour
         else
         {
 
-            magazine += allAmmo;
-            allAmmo = 0;
+            if (magazine + allAmmo <= fullMagazine)
+            {
+                magazine += allAmmo;
+                allAmmo = 0;
+            }
+            else
+            {
+                magazine = fullMagazine;
+                allAmmo -= fullMagazine - magazine;
+            }
+
             animator.SetTrigger("Recharge");
             recharge.Play();
         }
@@ -77,7 +85,7 @@ public class Shotgun : MonoBehaviour
             Vector3 dir = CalculateDirectionAndSpreading().normalized;
             animator.SetTrigger("Stop");
             animator.SetTrigger("Shoot");
-            Ray ray = new Ray(spawn.position, dir);
+            Ray ray = new(cam.gameObject.transform.position,dir);
             var bulletBeing = Instantiate(bullet, sleeveSpawn.position, Quaternion.identity);
             bulletBeing.GetComponent<Rigidbody>().AddForce(sleeveSpawn.right * 1f);
              
@@ -123,7 +131,7 @@ public class Shotgun : MonoBehaviour
         else
             targetPoint = rayFromCam.GetPoint(100);
 
-        Vector3 dir = targetPoint - spawn.position;
+        Vector3 dir = targetPoint-cam.gameObject.transform.position;
 
         float xSpread = Random.Range(-spread, spread);
         float ySpread = Random.Range(-spread, spread);
