@@ -1,7 +1,8 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using YG;
 
 public class Zombie : MonoBehaviour
 {
@@ -32,18 +33,18 @@ public class Zombie : MonoBehaviour
     {
 
         CrySound();
-        if(!isDead)
-        agent.SetDestination(playerController.transform.position);
+        if (!isDead)
+            agent.SetDestination(playerController.transform.position);
 
-        
+
         if (health <= 0 && !isDead)
         {
             Die();
         }
-        if (health <= maxHealth / 2&&canDo)
+        if (health <= maxHealth / 2 && canDo)
         {
             canDo = false;
-            animator.SetBool("isRun",true);
+            animator.SetBool("isRun", true);
             agent.speed *= 2;
             agent.angularSpeed *= 2;
         }
@@ -67,11 +68,11 @@ public class Zombie : MonoBehaviour
         timeBtwAttack = delay;
         Vector3 dir = (playerController.transform.position - transform.position).normalized;
 
-        if (Physics.Raycast(transform.position,dir,out RaycastHit hit,maxDistance, layer))
+        if (Physics.Raycast(transform.position, dir, out RaycastHit hit, maxDistance, layer))
         {
             animator.SetTrigger("Attack");
             agent.SetDestination(transform.position);
-           var ch = hit.collider.gameObject.GetComponent<CharacterHealth>();
+            var ch = hit.collider.gameObject.GetComponent<CharacterHealth>();
             StartCoroutine(DamageAfter(ch));
         }
     }
@@ -91,6 +92,30 @@ public class Zombie : MonoBehaviour
         }
         WaveState.zombiesCount--;
         if (WaveState.zombiesCount == 0) WaveState.isRest = true;
+
+        if (WaveState.zombiesCount == 0 && WaveState.waveCount == 5)
+        {
+            ShowWinUI.isWin = true;
+            switch (WaveState.type)
+            {
+                case 0:
+                    YandexGame.savesData.isVillageClean = 1;
+                    break;
+                case 1:
+                    YandexGame.savesData.isMansionClean = 1;
+                    break;
+                case 2:
+                    YandexGame.savesData.isDumpClean = 1;
+                    break;
+            }
+            YandexGame.SaveProgress();
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex % 2 == 0)
+        {
+            InfWaveState.kills++;
+        }
+
         StartCoroutine(DestroyAfter());
     }
 
@@ -98,8 +123,8 @@ public class Zombie : MonoBehaviour
     {
         handSound.Play();
         yield return new WaitForSeconds(0.2f);
-        if(Vector3.Distance(transform.position,playerController.transform.position)<=maxDistance)
-        ch.GetDamage(damage/2);
+        if (Vector3.Distance(transform.position, playerController.transform.position) <= maxDistance)
+            ch.GetDamage(damage / 2);
         handSound.Play();
         yield return new WaitForSeconds(0.4f);
         if (Vector3.Distance(transform.position, playerController.transform.position) <= maxDistance)

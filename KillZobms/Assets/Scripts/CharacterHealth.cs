@@ -7,10 +7,14 @@ public class CharacterHealth : MonoBehaviour
     [SerializeField] GameObject DamageUI;
     [SerializeField] GameObject AidUI;
     [SerializeField] AudioSource healSound;
+    [SerializeField] GameObject LoseMenu;
 
     private void Update()
     {
-        if (health <= 0) Time.timeScale = 0;
+        if (health <= 0)
+        {
+            LoseMenu.SetActive(true);
+        }
     }
 
     public void GetDamage(int dam)

@@ -10,8 +10,20 @@ public class WaveState : MonoBehaviour
     [SerializeField] GameObject helpUI;
     public static int zombiesCount;
     [SerializeField] TextMeshProUGUI zombiesCountText;
+    public static int type = 0;
+    [SerializeField] int placeType = 0;
 
-    
+    private void OnDisable()
+    {
+        zombiesCount = 0;
+        waveCount = 0;
+        isRest = true;
+    }
+
+    private void Start()
+    {
+        type = placeType;
+    }
 
     private void Update()
     {

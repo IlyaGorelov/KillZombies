@@ -11422,8 +11422,8 @@ MonoBehaviour:
   delay: 0.1
   groundEffect: {fileID: 7083274581383284954, guid: 586e3a8d96637e74c9f0c6e246202dc1, type: 3}
   bodyEffect: {fileID: 2456734647435021770, guid: 8c8565e16829afa4db19b4f39f83525e, type: 3}
-  cam: {fileID: 6705181999291605907}
-  spread: 0.2
+  cam: {fileID: 6705181999291605905}
+  spread: 0.5
 --- !u!95 &1007549951404827590
 Animator:
   serializedVersion: 7
@@ -11573,7 +11573,7 @@ MonoBehaviour:
   groundEffect: {fileID: 7083274581383284954, guid: 586e3a8d96637e74c9f0c6e246202dc1, type: 3}
   bodyEffect: {fileID: 2456734647435021770, guid: 8c8565e16829afa4db19b4f39f83525e, type: 3}
   cam: {fileID: 6705181999291605907}
-  spread: 10
+  spread: 1
 --- !u!1 &7334850315364496070
 GameObject:
   m_ObjectHideFlags: 0
@@ -11878,8 +11878,8 @@ MonoBehaviour:
   delay: 0.3
   groundEffect: {fileID: 7083274581383284954, guid: 586e3a8d96637e74c9f0c6e246202dc1, type: 3}
   bodyEffect: {fileID: 2456734647435021770, guid: 8c8565e16829afa4db19b4f39f83525e, type: 3}
-  cam: {fileID: 6705181999291605907}
-  spread: 0.2
+  cam: {fileID: 6705181999291605905}
+  spread: 0.3
 --- !u!95 &8704252742470584176
 Animator:
   serializedVersion: 7
@@ -17962,6 +17962,7 @@ MonoBehaviour:
   - {fileID: 6965502580061783499}
   gunId: 0
   ChangeUI: {fileID: 6885370512881166864}
+  ammoSound: {fileID: 0}
 --- !u!114 &3882610055837542681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17977,6 +17978,7 @@ MonoBehaviour:
   health: 100
   DamageUI: {fileID: 3745998384136237008}
   AidUI: {fileID: 5101200106338034694}
+  healSound: {fileID: 0}
 --- !u!4 &6705182000081242379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}

@@ -1894,7 +1894,6 @@ GameObject:
   - component: {fileID: 6503463914566096707}
   - component: {fileID: 5824006496314402273}
   - component: {fileID: 8318666302322554191}
-  - component: {fileID: 5355098213972597237}
   - component: {fileID: 40882056776825747}
   m_Layer: 7
   m_Name: Zombie2
@@ -2009,18 +2008,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &5355098213972597237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6590322103679244904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f3b2d49e1d50b4c9d55ded39f6be9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &40882056776825747
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2031,7 +2018,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

@@ -1,0 +1,25 @@
+{
+  "idSave": 157,
+  "isFirstSession": false,
+  "language": "en",
+  "promptDone": false,
+  "money": 1,
+  "newPlayerName": "Hello!",
+  "openLevels": [
+    false,
+    true,
+    false
+  ],
+  "fullVolume": 0.0,
+  "musicVolume": 0.0,
+  "soundVolume": 0.0,
+  "isVillageClean": 0,
+  "isMansionClean": 1,
+  "isDumpClean": 0,
+  "maxKillsVillage": 1,
+  "timeVillage": 28,
+  "maxKillsMan": 3,
+  "timeMan": 37,
+  "maxKillsDump": 0,
+  "timeDump": 0
+}

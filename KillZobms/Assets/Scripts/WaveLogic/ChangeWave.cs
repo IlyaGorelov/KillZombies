@@ -9,6 +9,8 @@ public class ChangeWave : MonoBehaviour
     [SerializeField] float maxSeconds;
     private float seconds;
 
+    
+
     private void Start()
     {
         seconds = maxSeconds;
@@ -32,8 +34,12 @@ public class ChangeWave : MonoBehaviour
 
         if (seconds <= 0||Input.GetKeyDown(KeyCode.N))
         {
+            if (WaveState.isRest)
+            {
             WaveState.isRest = false;
             WaveState.waveCount += 1;
+
+            }
         }
     }
 }
