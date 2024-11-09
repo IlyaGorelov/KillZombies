@@ -19,6 +19,7 @@ namespace YG
         // Ваши сохранения
 
         public float fullVolume = 0;
+        public float mouseSensetivity = 2;
         public float musicVolume = 0;
         public float soundVolume = 0;
         public int isVillageClean = 0;

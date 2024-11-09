@@ -27,7 +27,8 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKey(KeyCode.M) && Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.T))
+            damage *= 2;
 
         if (Input.GetKey(KeyCode.Mouse0) && timeBeforeShot <= 0 && magazine > 0)
         {

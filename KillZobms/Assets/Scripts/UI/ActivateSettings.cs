@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+    using Unity.VisualScripting;
 using UnityEngine;
 using YG;
 
@@ -11,9 +11,11 @@ public class ActivateSettings : MonoBehaviour
     private void OnEnable()
     {
         YandexGame.onVisibilityWindowGame += OnVisibillity;
+        YandexGame.OpenFullAdEvent += ActivateFromAd;
     }
     private void OnDisable()
     {
+        YandexGame.OpenFullAdEvent -= ActivateFromAd;
         YandexGame.onVisibilityWindowGame -= OnVisibillity;
     }
 
@@ -23,6 +25,12 @@ public class ActivateSettings : MonoBehaviour
     }
 
     public void Activate()
+    {
+        settings.SetActive(true);
+
+    }
+
+    private void ActivateFromAd()
     {
         settings.SetActive(true);
 

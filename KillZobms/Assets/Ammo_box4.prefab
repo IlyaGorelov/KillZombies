@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2712130257000107559}
   - component: {fileID: 4412717824277686800}
   - component: {fileID: 8387467145986869747}
-  - component: {fileID: -1019150686843090889}
   m_Layer: 6
   m_Name: Ammo_box4
   m_TagString: Untagged
@@ -104,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   count: 12
+  spawnPoint: {fileID: 4557651354718807156, guid: c4b2c69de99bda54c80d58f09fca5612, type: 3}
 --- !u!65 &8387467145986869747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125,20 +125,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0551353, y: 0.43353096, z: 0.62653434}
   m_Center: {x: 0.0010621548, y: 0.21676542, z: -0.0019042939}
---- !u!114 &-1019150686843090889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963790024204920649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e66c5af7381e648873f5790a78ea2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 4557651354718807156, guid: c4b2c69de99bda54c80d58f09fca5612, type: 3}
-  index: 2
 --- !u!1 &1280037705474631206
 GameObject:
   m_ObjectHideFlags: 0

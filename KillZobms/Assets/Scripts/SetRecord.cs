@@ -1,6 +1,5 @@
 using UnityEngine;
 using YG;
-using YG.Example;
 
 public class SetRecord : MonoBehaviour
 {
@@ -15,14 +14,22 @@ public class SetRecord : MonoBehaviour
     private void Start()
     {
         if (YandexGame.SDKEnabled)
+        {
             Load();
+            Set();
+        }
+    }
+
+    private void Set()
+    {
+        
+        int ans = a+b+c;
+        YandexGame.NewLeaderboardScores("Leaderboar", ans);
     }
 
     private void OnDisable()
     {
         YandexGame.GetDataEvent -= Load;
-        int ans = a+b+c;
-        YandexGame.NewLeaderboardScores("Leaderboar", ans);
     }
 
     private void Load()

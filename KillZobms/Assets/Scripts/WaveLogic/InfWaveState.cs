@@ -7,6 +7,7 @@ public class InfWaveState : MonoBehaviour
     [SerializeField] TextMeshProUGUI killText;
     [SerializeField] TextMeshProUGUI timeText;
     private float time = 0;
+    public static int zombiesCount;
 
     private void Update()
     {
@@ -18,6 +19,7 @@ public class InfWaveState : MonoBehaviour
 
     private void OnDisable()
     {
+        zombiesCount = 0;
         kills = 0;
         time = 0;
     }

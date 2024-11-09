@@ -8,8 +8,9 @@ public class ChangeVolume : MonoBehaviour
     private Slider slider;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] sliderType type;
+    [SerializeField] FirstPersonController firstPersonController;
 
-    enum sliderType { full,mus,sound}
+    enum sliderType { full,mus,sound,sense}
 
     private void Start()
     {
@@ -31,6 +32,10 @@ public class ChangeVolume : MonoBehaviour
             case sliderType.sound:
                 audioMixer.SetFloat("Sound", slider.value);
                 YandexGame.savesData.soundVolume = slider.value;
+                break;
+            case sliderType.sense:
+                firstPersonController.mouseSensitivity= slider.value;
+                YandexGame.savesData.mouseSensetivity = slider.value;
                 break;
         }
         YandexGame.SaveProgress();

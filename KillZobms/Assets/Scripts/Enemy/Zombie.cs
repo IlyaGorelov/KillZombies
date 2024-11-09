@@ -114,6 +114,7 @@ public class Zombie : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex % 2 == 0)
         {
             InfWaveState.kills++;
+            InfWaveState.zombiesCount--;
         }
 
         StartCoroutine(DestroyAfter());

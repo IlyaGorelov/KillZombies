@@ -10,8 +10,9 @@ public class CreateZombiesInf : MonoBehaviour
 
     private void Update()
     {
-        if (timeBtw <= 0)
+        if (timeBtw <= 0 && InfWaveState.zombiesCount<60)
         {
+            InfWaveState.zombiesCount++;
             int rand = Random.Range(0, zombies.Length);
             Instantiate(zombies[rand], transform.position, Quaternion.identity);
             timeBtw = delay;

@@ -55,7 +55,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(5, 6, 5, 0));
+                StartCoroutine(Spawn(5, 4, 1, 0));
             }
             else if (WaveState.isRest)
             {
@@ -71,7 +71,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(2, 2, 11, 1));
+                StartCoroutine(Spawn(5, 3, 1, 1));
             }
             else if (WaveState.isRest)
             {
@@ -126,7 +126,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(5, 6, 5, 0));
+                StartCoroutine(Spawn(5, 3, 2, 0));
             }
             else if (WaveState.isRest)
             {
@@ -142,7 +142,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(2, 2, 11, 1));
+                StartCoroutine(Spawn(2, 4,3, 1));
             }
             else if (WaveState.isRest)
             {
@@ -155,7 +155,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(0, 0, 10, 5));
+                StartCoroutine(Spawn(0, 0, 5, 5));
             }
             else if (WaveState.isRest)
             {
@@ -197,7 +197,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(3, 6, 8, 0));
+                StartCoroutine(Spawn(5, 3, 2, 0));
             }
             else if (WaveState.isRest)
             {
@@ -213,7 +213,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(2, 2, 11, 1));
+                StartCoroutine(Spawn(2, 4, 3, 1));
             }
             else if (WaveState.isRest)
             {
@@ -226,7 +226,7 @@ public class CreateZombies : MonoBehaviour
             if (!WaveState.isRest && canSpawn)
             {
                 canSpawn = false;
-                StartCoroutine(Spawn(0, 0, 5, 6));
+                StartCoroutine(Spawn(0, 0, 5, 5));
             }
             else if (WaveState.isRest)
             {

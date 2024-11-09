@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class ChangeWave : MonoBehaviour
 {
@@ -8,13 +9,15 @@ public class ChangeWave : MonoBehaviour
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] float maxSeconds;
     private float seconds;
-
+    private bool canShowAd = true;
     
 
     private void Start()
     {
         seconds = maxSeconds;
     }
+
+    
 
     void Update()
     {
@@ -23,9 +26,15 @@ public class ChangeWave : MonoBehaviour
             timer.SetActive(true);
             timerText.text = seconds.ToString("0.00");
             seconds -= Time.deltaTime;
+            if (canShowAd && WaveState.waveCount!=0)
+            {
+            YandexGame.FullscreenShow();
+            canShowAd = false;
+            }
         }
-        else
+        else if(!WaveState.isRest)
         {
+            canShowAd = true;
             seconds = maxSeconds;
             timer.SetActive(false);
         }

@@ -107,6 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b88f0c55be4c343b8949ac6b6aee54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 4557651354718807156, guid: c4b2c69de99bda54c80d58f09fca5612, type: 3}
+  index: 4
 --- !u!65 &1031840572788772442
 BoxCollider:
   m_ObjectHideFlags: 0
